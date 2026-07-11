@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "CivilAI",
-  description: "Public Services Assistant for Tunisia",
+  title: "CivicAI — Public Services Assistant for Tunisia",
+  description: "AI-powered guide to Tunisian public administration — passports, business registration, scholarships, and more.",
 };
 
 export default function RootLayout({ children }) {
