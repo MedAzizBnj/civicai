@@ -62,24 +62,20 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* SCROLLING MARQUEE */}
+{/* SCROLLING MARQUEE */}
 <div style={s.marqueeWrapper}>
   <div className="marquee-track">
     {[...Array(2)].map((_, gi) => (
       <div key={gi} style={s.marqueeInner}>
-        {techStack.map((t, i) => (
+        {techStack.filter(t => t.icon).map((t, i) => (
           <span key={`${t.name}-${i}`} style={s.marqueeTag}>
-            {t.icon && (
-              <img src={t.icon} alt="" style={s.marqueeIcon} />
-            )}
-            {t.name}
+            <img src={t.icon} alt={t.name} style={s.marqueeIcon} title={t.name} />
           </span>
         ))}
       </div>
     ))}
   </div>
 </div>
-
       {/* ABOUT CIVICAI */}
       <section id="about" style={s.section}>
         <div style={s.sectionInner}>
@@ -328,20 +324,16 @@ marqueeInner: {
 marqueeTag: { 
   display: "inline-flex",
   alignItems: "center",
-  gap: 8,
+  justifyContent: "center",
   background: "#f5f5f5", 
   border: "1px solid #e5e5e5",
-  color: "#555", 
-  padding: "8px 20px", 
-  borderRadius: 6, 
-  fontSize: 13, 
-  fontWeight: 600,
-  letterSpacing: 0.5,
+  padding: "12px 16px", 
+  borderRadius: 8, 
   whiteSpace: "nowrap",
 },
 marqueeIcon: {
-  width: 16,
-  height: 16,
+  width: 28,
+  height: 28,
   objectFit: "contain",
 },
 };
