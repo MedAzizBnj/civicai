@@ -13,19 +13,20 @@ export default function LandingPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
- const techStack = [
-  { name: "FastAPI", icon: "/icons/fastapi.png" },
-  { name: "RAG Pipeline", icon: null },
-  { name: "ChromaDB", icon: "/icons/ChromaDB.png" },
-  { name: "Groq LLM", icon: null },
-  { name: "Docker", icon: "/icons/Docker.png" },
-  { name: "Railway", icon: "/icons/Railway.png" },
-  { name: "Next.js", icon: "/icons/Next.js.png" },
-  { name: "Vercel", icon: "/icons/Vercel.png" },
-  { name: "sentence-transformers", icon: null },
-  { name: "Python 3.11", icon: "/icons/Python.png" },
-  { name: "CI/CD", icon: "/icons/CI-CD.png" },
-];
+  const techStack = [
+    { name: "FastAPI", icon: "/icons/fastapi.png" },
+    { name: "RAG Pipeline", icon: null },
+    { name: "ChromaDB", icon: "/icons/ChromaDB.png" },
+    { name: "Groq LLM", icon: null },
+    { name: "Docker", icon: "/icons/Docker.png" },
+    { name: "Railway", icon: "/icons/Railway.png" },
+    { name: "Next.js", icon: "/icons/Next.js.png" },
+    { name: "Vercel", icon: "/icons/Vercel.png" },
+    { name: "sentence-transformers", icon: null },
+    { name: "Python 3.11", icon: "/icons/Python.png" },
+    { name: "CI/CD", icon: "/icons/CI-CD.png" },
+  ];
+
   return (
     <div style={s.page}>
       <style>{css}</style>
@@ -62,20 +63,21 @@ export default function LandingPage() {
         </div>
       </section>
 
-{/* SCROLLING MARQUEE */}
-<div style={s.marqueeWrapper}>
-  <div className="marquee-track">
-    {[...Array(2)].map((_, gi) => (
-      <div key={gi} style={s.marqueeInner}>
-        {techStack.filter(t => t.icon).map((t, i) => (
-          <span key={`${t.name}-${i}`} style={s.marqueeTag}>
-            <img src={t.icon} alt={t.name} style={s.marqueeIcon} title={t.name} />
-          </span>
-        ))}
+      {/* SCROLLING MARQUEE */}
+      <div style={s.marqueeWrapper}>
+        <div className="marquee-track">
+          {[...Array(2)].map((_, gi) => (
+            <div key={gi} style={s.marqueeInner}>
+              {techStack.filter(t => t.icon).map((t, i) => (
+                <span key={`${t.name}-${i}`} className="marquee-tag" style={s.marqueeTag}>
+                  <img src={t.icon} alt={t.name} style={s.marqueeIcon} title={t.name} />
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
-    ))}
-  </div>
-</div>
+
       {/* ABOUT CIVICAI */}
       <section id="about" style={s.section}>
         <div style={s.sectionInner}>
@@ -227,7 +229,7 @@ const css = `
   .marquee-track {
     display: flex;
     width: max-content;
-    animation: marquee 25s linear infinite;
+    animation: marquee 18s linear infinite;
   }
   .marquee-track:hover {
     animation-play-state: paused;
@@ -235,6 +237,15 @@ const css = `
   @keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
+  }
+
+  .marquee-tag {
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+  .marquee-tag:hover {
+    background: #eafaf3 !important;
+    border-color: #1D9E75 !important;
+    transform: translateY(-2px) scale(1.05);
   }
 `;
 
@@ -309,31 +320,30 @@ const s = {
   footerSub: { fontSize: 13, color: "#aaa" },
   footerLinks: { display: "flex", gap: 24 },
   footerLink: { color: "#aaa", textDecoration: "none", fontSize: 13 },
-  marqueeWrapper: { 
-  overflow: "hidden", 
-  borderTop: "1px solid #eee", 
-  borderBottom: "1px solid #eee", 
-  padding: "20px 0",
-  background: "#fff",
-},
-marqueeInner: { 
-  display: "flex", 
-  gap: 16, 
-  paddingRight: 16,
-},
-marqueeTag: { 
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  background: "#f5f5f5", 
-  border: "1px solid #e5e5e5",
-  padding: "12px 16px", 
-  borderRadius: 8, 
-  whiteSpace: "nowrap",
-},
-marqueeIcon: {
-  width: 28,
-  height: 28,
-  objectFit: "contain",
-},
+  marqueeWrapper: {
+    overflow: "hidden",
+    borderTop: "1px solid #eee",
+    borderBottom: "1px solid #eee",
+    padding: "20px 0",
+    background: "#fff",
+  },
+  marqueeInner: {
+    display: "flex",
+    gap: 16,
+  },
+  marqueeTag: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "#f5f5f5",
+    border: "1px solid #e5e5e5",
+    padding: "12px 16px",
+    borderRadius: 8,
+    whiteSpace: "nowrap",
+  },
+  marqueeIcon: {
+    width: 28,
+    height: 28,
+    objectFit: "contain",
+  },
 };
