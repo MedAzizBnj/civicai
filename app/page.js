@@ -33,7 +33,9 @@ export default function LandingPage() {
 
       {/* NAV */}
       <nav style={{ ...s.nav, ...(scrolled ? s.navScrolled : {}) }}>
-        <div style={s.navName}>CIVICAI</div>
+        <div style={s.navLogoWrap}>
+          <img src="/civicai.png" alt="CivicAI" style={s.navLogo} />
+        </div>
         <div style={s.navLinks}>
           <a href="#about" style={s.navLink}>ABOUT</a>
           <a href="#services" style={s.navLink}>SERVICES</a>
@@ -47,7 +49,7 @@ export default function LandingPage() {
       {/* HERO */}
       <section style={s.hero}>
         <div style={s.heroLeft}>
-          <p style={s.heroTagline}>Public Services Assistant for citizens</p>
+          <p style={s.heroTagline}>Public Services Assistant for Tunisia</p>
           <h1 style={s.heroTitle}>Mohamed Aziz<br />Ben Jannet</h1>
           <p style={s.heroSub}>
             I built CivicAI to make Tunisian public administration accessible to everyone —
@@ -72,28 +74,31 @@ export default function LandingPage() {
             </span>
           ))}
         </div>
-      </div>    
+      </div>
 
       {/* ABOUT CIVICAI */}
-      <section id="about" style={s.section}>
+      <section id="about" style={s.aboutSection}>
+        <div style={s.aboutOverlay} />
         <div style={s.sectionInner}>
           <div style={s.sectionText}>
-            <p style={s.sectionLabel}>WHAT IS CIVICAI</p>
-            <h2 style={s.sectionTitle}>
-              The single place Tunisians go to understand government procedures.
-            </h2>
-            <p style={s.sectionDesc}>
-              CivicAI uses Retrieval-Augmented Generation (RAG) to answer questions about
-              Tunisian public services. Instead of guessing, it retrieves the answer directly
-              from curated official sources — then explains it clearly in English, French, or Arabic.
-            </p>
-            <p style={s.sectionDesc}>
-              No more navigating 10 different ministry websites. No more outdated forum posts.
-              Just accurate, sourced answers — instantly.
-            </p>
-            <button onClick={() => router.push("/chat")} style={s.sectionBtn}>
-              ASK CIVICAI →
-            </button>
+            <div style={s.sectionTextPanel}>
+              <p style={s.sectionLabel}>WHAT IS CIVICAI</p>
+              <h2 style={s.sectionTitle}>
+                The single place Tunisians go to understand government procedures.
+              </h2>
+              <p style={s.sectionDesc}>
+                CivicAI uses Retrieval-Augmented Generation (RAG) to answer questions about
+                Tunisian public services. Instead of guessing, it retrieves the answer directly
+                from curated official sources — then explains it clearly in English, French, or Arabic.
+              </p>
+              <p style={s.sectionDesc}>
+                No more navigating 10 different ministry websites. No more outdated forum posts.
+                Just accurate, sourced answers — instantly.
+              </p>
+              <button onClick={() => router.push("/chat")} style={s.sectionBtn}>
+                ASK CIVICAI →
+              </button>
+            </div>
           </div>
           <div style={s.sectionImage}>
             <div style={s.chatPreview}>
@@ -122,7 +127,7 @@ export default function LandingPage() {
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 60px" }}>
           <p style={s.sectionLabel}>WHAT CIVICAI COVERS</p>
           <h2 style={{ ...s.sectionTitle, marginBottom: 48 }}>
-            7 essential Tunisian public services
+            essential Tunisian public services
           </h2>
           <div style={s.serviceGrid}>
             {[
@@ -253,7 +258,14 @@ const s = {
   // NAV
   nav: { position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "24px 60px", background: "rgba(255,255,255,0.95)", transition: "all 0.3s ease" },
   navScrolled: { boxShadow: "0 2px 20px rgba(0,0,0,0.08)", padding: "16px 60px" },
-  navName: { fontSize: 20, fontWeight: 800, letterSpacing: 2, color: "#1a1a1a" },
+  navLogo: { height: 28, objectFit: "contain", display: "block" },
+  navLogoWrap: {
+    background: "#141821",
+    borderRadius: 8,
+    padding: "8px 14px",
+    display: "inline-flex",
+    alignItems: "center",
+  },
   navLinks: { display: "flex", alignItems: "center", gap: 36 },
   navLink: { color: "#555", textDecoration: "none", fontSize: 12, fontWeight: 600, letterSpacing: 1.5 },
   navBtn: { background: "#1D9E75", color: "#fff", border: "none", padding: "10px 24px", fontSize: 12, fontWeight: 700, letterSpacing: 1.5, cursor: "pointer", borderRadius: 4 },
@@ -270,8 +282,30 @@ const s = {
 
   // SECTIONS
   section: { padding: "100px 0" },
-  sectionInner: { maxWidth: 1100, margin: "0 auto", padding: "0 60px", display: "flex", gap: 80, alignItems: "center" },
+  aboutSection: {
+    padding: "100px 0",
+    position: "relative",
+    backgroundImage: "url('/tuniscenter.webp')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  },
+  aboutOverlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: "rgba(255,255,255,0.1)",
+  },
+  sectionInner: { maxWidth: 1100, margin: "0 auto", padding: "0 60px", display: "flex", gap: 80, alignItems: "center", position: "relative", zIndex: 1 },
   sectionText: { flex: 1 },
+  sectionTextPanel: {
+    background: "rgba(255,255,255,0.85)",
+    backdropFilter: "blur(6px)",
+    WebkitBackdropFilter: "blur(6px)",
+    borderRadius: 12,
+    padding: "40px",
+  },
   sectionImage: { flex: 1 },
   sectionLabel: { fontSize: 11, fontWeight: 700, letterSpacing: 3, color: "#1D9E75", textTransform: "uppercase", marginBottom: 16 },
   sectionTitle: { fontSize: 36, fontWeight: 800, lineHeight: 1.2, color: "#1a1a1a", marginBottom: 24 },
@@ -319,15 +353,11 @@ const s = {
   footerLinks: { display: "flex", gap: 24 },
   footerLink: { color: "#aaa", textDecoration: "none", fontSize: 13 },
   marqueeWrapper: {
-  overflow: "hidden",
-  borderTop: "1px solid #eee",
-  borderBottom: "1px solid #eee",
-  padding: "20px 0",
-  background: "#fff",
-},
-  marqueeInner: {
-    display: "flex",
-    gap: 16,
+    overflow: "hidden",
+    borderTop: "1px solid #eee",
+    borderBottom: "1px solid #eee",
+    padding: "20px 0",
+    background: "#fff",
   },
   marqueeTag: {
     display: "inline-flex",
