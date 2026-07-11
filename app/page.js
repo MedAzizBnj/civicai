@@ -66,14 +66,10 @@ export default function LandingPage() {
       {/* SCROLLING MARQUEE */}
       <div style={s.marqueeWrapper}>
         <div className="marquee-track">
-          {[...Array(2)].map((_, gi) => (
-            <div key={gi} style={s.marqueeInner}>
-              {techStack.filter(t => t.icon).map((t, i) => (
-                <span key={`${t.name}-${i}`} className="marquee-tag" style={s.marqueeTag}>
-                  <img src={t.icon} alt={t.name} style={s.marqueeIcon} title={t.name} />
-                </span>
-              ))}
-            </div>
+          {[...techStack.filter(t => t.icon), ...techStack.filter(t => t.icon)].map((t, i) => (
+            <span key={`${t.name}-${i}`} className="marquee-tag" style={s.marqueeTag}>
+              <img src={t.icon} alt={t.name} style={s.marqueeIcon} title={t.name} />
+            </span>
           ))}
         </div>
       </div>
@@ -228,8 +224,10 @@ const css = `
 
   .marquee-track {
     display: flex;
+    flex-wrap: nowrap;
     width: max-content;
-    animation: marquee 18s linear infinite;
+    gap: 16px;
+    animation: marquee 12s linear infinite;
   }
   .marquee-track:hover {
     animation-play-state: paused;
@@ -321,12 +319,12 @@ const s = {
   footerLinks: { display: "flex", gap: 24 },
   footerLink: { color: "#aaa", textDecoration: "none", fontSize: 13 },
   marqueeWrapper: {
-    overflow: "hidden",
-    borderTop: "1px solid #eee",
-    borderBottom: "1px solid #eee",
-    padding: "20px 0",
-    background: "#fff",
-  },
+  overflow: "hidden",
+  borderTop: "1px solid #eee",
+  borderBottom: "1px solid #eee",
+  padding: "20px 0",
+  background: "#fff",
+},
   marqueeInner: {
     display: "flex",
     gap: 16,
