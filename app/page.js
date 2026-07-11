@@ -13,6 +13,19 @@ export default function LandingPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+ const techStack = [
+  { name: "FastAPI", icon: "/icons/fastapi.png" },
+  { name: "RAG Pipeline", icon: null },
+  { name: "ChromaDB", icon: "/icons/ChromaDB.png" },
+  { name: "Groq LLM", icon: null },
+  { name: "Docker", icon: "/icons/Docker.png" },
+  { name: "Railway", icon: "/icons/Railway.png" },
+  { name: "Next.js", icon: "/icons/Next.js.png" },
+  { name: "Vercel", icon: "/icons/Vercel.png" },
+  { name: "sentence-transformers", icon: null },
+  { name: "Python 3.11", icon: "/icons/Python.png" },
+  { name: "CI/CD", icon: "/icons/CI-CD.png" },
+];
   return (
     <div style={s.page}>
       <style>{css}</style>
@@ -54,8 +67,13 @@ export default function LandingPage() {
   <div className="marquee-track">
     {[...Array(2)].map((_, gi) => (
       <div key={gi} style={s.marqueeInner}>
-        {["FastAPI", "RAG Pipeline", "ChromaDB", "Groq LLM", "Docker", "Railway", "Next.js", "Vercel", "sentence-transformers", "Python 3.11", "CI/CD"].map(t => (
-          <span key={t} style={s.marqueeTag}>{t}</span>
+        {techStack.map((t, i) => (
+          <span key={`${t.name}-${i}`} style={s.marqueeTag}>
+            {t.icon && (
+              <img src={t.icon} alt="" style={s.marqueeIcon} />
+            )}
+            {t.name}
+          </span>
         ))}
       </div>
     ))}
@@ -310,6 +328,7 @@ marqueeInner: {
 marqueeTag: { 
   display: "inline-flex",
   alignItems: "center",
+  gap: 8,
   background: "#f5f5f5", 
   border: "1px solid #e5e5e5",
   color: "#555", 
@@ -319,5 +338,10 @@ marqueeTag: {
   fontWeight: 600,
   letterSpacing: 0.5,
   whiteSpace: "nowrap",
+},
+marqueeIcon: {
+  width: 16,
+  height: 16,
+  objectFit: "contain",
 },
 };
