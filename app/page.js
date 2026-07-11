@@ -168,7 +168,7 @@ export default function LandingPage() {
             </p>
             <div style={s.creatorLinks}>
               <a href="https://github.com/MedAzizBnj" target="_blank" style={s.creatorBtn}>GitHub</a>
-              <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank" style={s.creatorBtn}>LinkedIn</a>
+              <a href="https://www.linkedin.com/in/mohamed-aziz-ben-jannet-442075387/" target="_blank" style={s.creatorBtn}>LinkedIn</a>
             </div>
           </div>
         </div>
