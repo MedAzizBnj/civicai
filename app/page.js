@@ -47,7 +47,7 @@ export default function LandingPage() {
       {/* HERO */}
       <section style={s.hero}>
         <div style={s.heroLeft}>
-          <p style={s.heroTagline}>Public Services Assistant for Tunisia</p>
+          <p style={s.heroTagline}>Public Services Assistant for citizens</p>
           <h1 style={s.heroTitle}>Mohamed Aziz<br />Ben Jannet</h1>
           <p style={s.heroSub}>
             I built CivicAI to make Tunisian public administration accessible to everyone —
@@ -66,13 +66,13 @@ export default function LandingPage() {
       {/* SCROLLING MARQUEE */}
       <div style={s.marqueeWrapper}>
         <div className="marquee-track">
-          {[...techStack.filter(t => t.icon), ...techStack.filter(t => t.icon)].map((t, i) => (
+          {[...Array(4)].flatMap(() => techStack.filter(t => t.icon)).map((t, i) => (
             <span key={`${t.name}-${i}`} className="marquee-tag" style={s.marqueeTag}>
               <img src={t.icon} alt={t.name} style={s.marqueeIcon} title={t.name} />
             </span>
           ))}
         </div>
-      </div>
+      </div>    
 
       {/* ABOUT CIVICAI */}
       <section id="about" style={s.section}>
@@ -234,7 +234,7 @@ const css = `
   }
   @keyframes marquee {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    100% { transform: translateX(-25%); }
   }
 
   .marquee-tag {
