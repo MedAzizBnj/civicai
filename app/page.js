@@ -49,12 +49,18 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* LOGOS ROW */}
-      <div style={s.logosRow}>
-        {["FastAPI", "RAG Pipeline", "ChromaDB", "Groq LLM", "Docker", "Railway", "Next.js", "Vercel"].map(t => (
-          <span key={t} style={s.logoItem}>{t}</span>
+      {/* SCROLLING MARQUEE */}
+<div style={s.marqueeWrapper}>
+  <div className="marquee-track">
+    {[...Array(2)].map((_, gi) => (
+      <div key={gi} style={s.marqueeInner}>
+        {["FastAPI", "RAG Pipeline", "ChromaDB", "Groq LLM", "Docker", "Railway", "Next.js", "Vercel", "sentence-transformers", "Python 3.11", "CI/CD"].map(t => (
+          <span key={t} style={s.marqueeTag}>{t}</span>
         ))}
       </div>
+    ))}
+  </div>
+</div>
 
       {/* ABOUT CIVICAI */}
       <section id="about" style={s.section}>
@@ -203,6 +209,19 @@ const css = `
   .scard:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.10); transform: translateY(-3px); }
   .scard { transition: all 0.2s ease; }
   a { color: inherit; }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 25s linear infinite;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 `;
 
 const s = {
@@ -225,10 +244,6 @@ const s = {
   heroCta: { background: "#1D9E75", color: "#fff", border: "none", padding: "16px 36px", fontSize: 13, fontWeight: 700, letterSpacing: 2, cursor: "pointer", borderRadius: 4, alignSelf: "flex-start" },
   heroRight: { flex: 1, overflow: "hidden", maxHeight: "100vh" },
   heroImg: { width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" },
-
-  // LOGOS
-  logosRow: { display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 40, padding: "40px 60px", borderTop: "1px solid #eee", borderBottom: "1px solid #eee" },
-  logoItem: { fontSize: 13, fontWeight: 700, letterSpacing: 1.5, color: "#bbb", textTransform: "uppercase" },
 
   // SECTIONS
   section: { padding: "100px 0" },
@@ -280,4 +295,29 @@ const s = {
   footerSub: { fontSize: 13, color: "#aaa" },
   footerLinks: { display: "flex", gap: 24 },
   footerLink: { color: "#aaa", textDecoration: "none", fontSize: 13 },
+  marqueeWrapper: { 
+  overflow: "hidden", 
+  borderTop: "1px solid #eee", 
+  borderBottom: "1px solid #eee", 
+  padding: "20px 0",
+  background: "#fff",
+},
+marqueeInner: { 
+  display: "flex", 
+  gap: 16, 
+  paddingRight: 16,
+},
+marqueeTag: { 
+  display: "inline-flex",
+  alignItems: "center",
+  background: "#f5f5f5", 
+  border: "1px solid #e5e5e5",
+  color: "#555", 
+  padding: "8px 20px", 
+  borderRadius: 6, 
+  fontSize: 13, 
+  fontWeight: 600,
+  letterSpacing: 0.5,
+  whiteSpace: "nowrap",
+},
 };
